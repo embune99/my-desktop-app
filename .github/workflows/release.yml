@@ -1,0 +1,34 @@
+name: Release
+
+# Build and publish artifacts to a GitHub Release whenever a v* tag is pushed.
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  release:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build and publish
+        env:
+          # Provided automatically by GitHub Actions — used by electron-builder
+          # to upload the built artifacts to the GitHub Release.
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npm run release

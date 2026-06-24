@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>MyDesktopApp</title>
+    <style>
+      body {
+        font-family: system-ui, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+        background: #1e1e2e;
+        color: #cdd6f4;
+      }
+      h1 { margin: 0 0 8px; }
+      span { opacity: 0.6; font-size: 14px; }
+    </style>
+  </head>
+  <body>
+    <h1>MyDesktopApp</h1>
+    <span id="version"></span>
+    <script>
+      document.getElementById('version').textContent =
+        'Electron ' + process.versions.electron;
+    </script>
+  </body>
+</html>

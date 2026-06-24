@@ -1,0 +1,51 @@
+{
+  "name": "my-desktop-app",
+  "version": "0.1.0",
+  "description": "Minimal Electron app to test GitHub Release artifacts",
+  "main": "main.js",
+  "author": {
+    "name": "embune99",
+    "email": "embune99@users.noreply.github.com"
+  },
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder",
+    "release": "electron-builder --publish always"
+  },
+  "build": {
+    "appId": "com.example.mydesktopapp",
+    "productName": "MyDesktopApp",
+    "files": [
+      "main.js",
+      "index.html",
+      "package.json"
+    ],
+    "publish": {
+      "provider": "github",
+      "owner": "embune99",
+      "repo": "my-desktop-app"
+    },
+    "linux": {
+      "target": [
+        "deb"
+      ],
+      "category": "Utility"
+    },
+    "win": {
+      "target": [
+        "msi"
+      ]
+    },
+    "mac": {
+      "target": [
+        "dmg"
+      ]
+    }
+  },
+  "devDependencies": {
+    "electron": "^31.0.0",
+    "electron-builder": "^24.13.3"
+  }
+}
