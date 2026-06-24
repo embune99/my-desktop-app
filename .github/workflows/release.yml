@@ -9,6 +9,10 @@ on:
 jobs:
   release:
     runs-on: ${{ matrix.os }}
+    # Required so electron-builder can create the GitHub Release and upload
+    # artifacts using the built-in GITHUB_TOKEN.
+    permissions:
+      contents: write
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
